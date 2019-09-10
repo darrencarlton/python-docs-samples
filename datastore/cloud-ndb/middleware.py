@@ -12,12 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START ndb_wsgi_middleware]
 # [START ndb_django_middleware]
 from google.cloud import ndb
 
-
-# [END ndb_django_middleware]
 def ndb_wsgi_middleware(wsgi_app):
     client = ndb.Client()
 
@@ -26,10 +23,7 @@ def ndb_wsgi_middleware(wsgi_app):
             return wsgi_app(environ, start_response)
 
     return middleware
-# [END ndb_wsgi_middleware]
 
-
-# [START ndb_django_middleware]
 def ndb_django_middleware(get_response):
     client = ndb.Client()
 
