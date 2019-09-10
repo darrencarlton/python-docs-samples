@@ -13,21 +13,17 @@
 # limitations under the License.
 
 # [START ndb_context_usage]
-# [START ndb_import]
 from google.cloud import ndb
 
-
-# [END ndb_import]
+# Creating a model definition does not require a client.
 class Book(ndb.Model):
     title = ndb.StringProperty()
 
-
-# [START ndb_client]
 client = ndb.Client()
 
-
-# [END ndb_client]
 def list_books():
+    # To interact with Datastore, get the client's runtime context.
+    # All interactions with Datastore need to occur within the runtime context.
     with client.context():
         books = Book.query()
         for book in books:
